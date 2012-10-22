@@ -27,6 +27,7 @@ from unittest import TestCase, main
 import os
 import sys
 import contextlib
+import subprocess
 import g_remove_water as grw
 
 __author__ = "Marc Gueroult, Hubert Santuz & Jonathan Barnoud"
@@ -211,7 +212,13 @@ class TestProgramm(TestCase):
     """
     Test the program command line.
     """
-    pass
+    def test_run_slice(self):
+        """
+        Try to run the program on a membrane.
+        """
+        subprocess.call(["./g_remove_water.py", "-f",
+                         "{0}/regular.gro".format(REFDIR),
+                         "-o", "test_output.gro"], stdout=subprocess.PIPE)
 
 
 @contextlib.contextmanager
